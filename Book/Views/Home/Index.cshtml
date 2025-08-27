@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Book.Models.Message>
+
+<h2>Guestbook</h2>
+
+<div>
+    <a asp-controller="Account" asp-action="Login">Login</a> |
+    <a asp-controller="Account" asp-action="Registration">Registration</a> |
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form asp-controller="Account" asp-action="Logout" method="post">
+            <button type="submit">Exit</button>
+        </form>
+    }
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <form asp-action="AddMessage" method="post">
+        <textarea name="text" rows="3" cols="50"></textarea><br />
+        <button type="submit">Add a message</button>
+    </form>
+}
+
+<hr />
+@foreach (var msg in Model)
+{
+    <table border="1" style="margin-bottom:10px">
+        <tr><td><b>@msg.User.Name</b></td></tr>
+        <tr><td>@msg.Text</td></tr>
+        <tr><td><i>@msg.MessageDate</i></td></tr>
+    </table>
+}

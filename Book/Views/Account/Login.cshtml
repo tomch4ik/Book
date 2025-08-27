@@ -1,0 +1,15 @@
+﻿<h2>Enter</h2>
+
+<form asp-action="Login" method="post">
+    <p>Логин: <input type="text" name="name" /></p>
+    <p>Пароль: <input type="password" name="pwd" /></p>
+    <button type="submit">Enter</button>
+</form>
+
+<a asp-action="Registration">Registration</a> |
+<a asp-action="Guest">Login as a guest</a>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}

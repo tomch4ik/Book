@@ -1,0 +1,13 @@
+﻿<h2>Registration</h2>
+
+<form asp-action="Registration" method="post">
+    <p>Логин: <input type="text" name="name" /></p>
+    <p>Пароль: <input type="password" name="pwd" /></p>
+    <p>Подтверждение: <input type="password" name="confirm" /></p>
+    <button type="submit">Register</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
