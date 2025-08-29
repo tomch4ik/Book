@@ -1,14 +1,16 @@
 ﻿@model IEnumerable<Book.Models.Message>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
-<h2>Guestbook</h2>
+<h2>@Localizer["GuestbookTitle"]</h2>
 
 <div>
-    <a asp-controller="Account" asp-action="Login">Login</a> |
-    <a asp-controller="Account" asp-action="Registration">Registration</a> |
+    <a asp-controller="Account" asp-action="Login">@Localizer["LoginLink"]</a> |
+    <a asp-controller="Account" asp-action="Registration">@Localizer["RegisterLink"]</a> |
     @if (User.Identity.IsAuthenticated)
     {
         <form asp-controller="Account" asp-action="Logout" method="post">
-            <button type="submit">Exit</button>
+            <button type="submit">@Localizer["ExitButton"]</button>
         </form>
     }
 </div>
@@ -17,7 +19,7 @@
 {
     <form asp-action="AddMessage" method="post">
         <textarea name="text" rows="3" cols="50"></textarea><br />
-        <button type="submit">Add a message</button>
+        <button type="submit">@Localizer["AddMessageButton"]</button>
     </form>
 }
 

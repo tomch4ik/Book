@@ -1,15 +1,31 @@
-﻿<h2>Enter</h2>
+﻿@model Book.Models.LoginViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<h2>@Localizer["LoginTitle"]</h2>
 
 <form asp-action="Login" method="post">
-    <p>Логин: <input type="text" name="name" /></p>
-    <p>Пароль: <input type="password" name="pwd" /></p>
-    <button type="submit">Enter</button>
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label asp-for="Name">@Localizer["Name"]</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Password">@Localizer["Password"]</label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <button type="submit">@Localizer["LoginButton"]</button>
 </form>
 
-<a asp-action="Registration">Registration</a> |
-<a asp-action="Guest">Login as a guest</a>
+<a asp-action="Registration">@Localizer["RegisterLink"]</a> |
+<a asp-action="Guest">@Localizer["GuestLogin"]</a>
 
-@if (ViewBag.Error != null)
-{
-    <p style="color:red">@ViewBag.Error</p>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
+

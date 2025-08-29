@@ -11,5 +11,9 @@ namespace Book.Models
 
         [Required]
         public string Pwd { get; set; }
+
+        [Required]
+        public string Salt { get; set; }
     }
 }
+
